@@ -1,0 +1,28 @@
+@AbapCatalog.sqlViewName: 'ZV_GST_EWB_AUD'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'UC15 GST Agent - E-Way Bill & Logistics Audit CDS View'
+@OData.publish: true
+
+define view ZCDS_GST_EWAYBILL_AUDIT
+  as select from j_1ig_ewaybill as EWB
+  left outer join likp          as Delivery on EWB.docno = Delivery.vbeln
+  left outer join kna1          as Customer on Delivery.kunnr = Customer.kunnr
+{
+  key EWB.docno                           as DocumentNumber,
+  key EWB.gjahr                           as FiscalYear,
+
+      EWB.ebillno                         as EWayBillNumber,
+      EWB.egen_dat                        as GenerationDate,
+      EWB.vdfmdate                        as ValidFromDate,
+      EWB.vdtodate                        as ValidToDate,
+      EWB.veh_no                          as VehicleNumber,
+      EWB.trans_id                        as TransporterID,
+      EWB.status                          as EWayBillStatus,
+
+      Delivery.vbeln                      as DeliveryDocument,
+      Delivery.lfdat                      as DeliveryDate,
+      Customer.stcd3                      as DestinationGSTIN,
+      Customer.pstlz                      as DestinationPINCode
+}

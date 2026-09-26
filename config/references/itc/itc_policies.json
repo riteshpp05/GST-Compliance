@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "source": "Central Goods and Services Tax Act, 2017 (Sections 16 & 17(5))",
+  "itc_policies": [
+    {
+      "policy_id": "ITC_17_5_A",
+      "version": "1.0",
+      "effective_from": "2017-07-01",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Section 17(5)(a) & (aa) CGST Act",
+      "category": "MOTOR_VEHICLES",
+      "blocked_keywords": ["motor vehicle", "car", "passenger vehicle", "automobile", "cab", "four wheeler"],
+      "is_blocked_17_5": true,
+      "blocked_reason": "Motor vehicles and conveyances for passenger transportation under Section 17(5)(a)",
+      "requires_2b_reconciliation": true,
+      "description": "ITC blocked on motor vehicles for transportation of persons having approved seating capacity <= 13 persons"
+    },
+    {
+      "policy_id": "ITC_17_5_B1",
+      "version": "1.0",
+      "effective_from": "2017-07-01",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Section 17(5)(b)(i) CGST Act",
+      "category": "FOOD_CATERING",
+      "blocked_keywords": ["food", "catering", "beverages", "canteen", "restaurant", "meal", "lunch", "dinner", "hospitality"],
+      "is_blocked_17_5": true,
+      "blocked_reason": "Food and beverages, outdoor catering under Section 17(5)(b)(i)",
+      "requires_2b_reconciliation": true,
+      "description": "ITC blocked on supply of food and beverages, outdoor catering, beauty treatment, health services"
+    },
+    {
+      "policy_id": "ITC_17_5_B2",
+      "version": "1.0",
+      "effective_from": "2017-07-01",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Section 17(5)(b)(ii) CGST Act",
+      "category": "CLUB_MEMBERSHIP",
+      "blocked_keywords": ["club", "membership", "fitness", "gym", "health club", "spa"],
+      "is_blocked_17_5": true,
+      "blocked_reason": "Membership of a club, health and fitness centre under Section 17(5)(b)(ii)",
+      "requires_2b_reconciliation": true,
+      "description": "ITC blocked on membership fees for clubs, health, fitness, and recreation facilities"
+    },
+    {
+      "policy_id": "ITC_17_5_G",
+      "version": "1.0",
+      "effective_from": "2017-07-01",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Section 17(5)(g) CGST Act",
+      "category": "PERSONAL_CONSUMPTION",
+      "blocked_keywords": ["personal", "gift", "employee welfare", "free sample", "personal effect", "festival gift"],
+      "is_blocked_17_5": true,
+      "blocked_reason": "Goods or services used for personal consumption under Section 17(5)(g)",
+      "requires_2b_reconciliation": true,
+      "description": "ITC blocked on goods or services or both used for personal consumption or employee gifts"
+    },
+    {
+      "policy_id": "ITC_17_5_H",
+      "version": "1.0",
+      "effective_from": "2017-07-01",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Section 17(5)(h) CGST Act",
+      "category": "LOST_DESTROYED",
+      "blocked_keywords": ["lost", "stolen", "destroyed", "written off", "disposed"],
+      "is_blocked_17_5": true,
+      "blocked_reason": "Goods lost, stolen, destroyed, written off or disposed under Section 17(5)(h)",
+      "requires_2b_reconciliation": true,
+      "description": "ITC blocked on goods lost, stolen, destroyed, written off, or given as gift"
+    }
+  ]
+}

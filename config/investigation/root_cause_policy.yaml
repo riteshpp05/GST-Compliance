@@ -1,0 +1,40 @@
+# UC15 GST Compliance Agent — Root Cause Intelligence Policy Configuration
+# Defines deterministic weights, scoring dimensions, taxonomy mappings, and confidence thresholds.
+root_cause_policy:
+  version: "1.0"
+
+  # Scoring dimensions (Sum = 100.0)
+  weights:
+    evidence_strength: 30.0
+    pattern_recurrence: 20.0
+    population_coverage: 20.0
+    temporal_consistency: 10.0
+    counterparty_concentration: 10.0
+    rule_concentration: 10.0
+
+  # Confidence thresholds
+  confidence_thresholds:
+    high: 75.0
+    medium: 50.0
+    low: 30.0
+    min_population_size: 2
+    min_independent_sources_for_high: 2
+
+  # Likelihood thresholds
+  likelihood_thresholds:
+    high: 70.0
+    medium: 45.0
+    low: 20.0
+
+  # Concentration thresholds for pattern identification
+  concentration_thresholds:
+    counterparty_high: 0.50
+    rule_high: 0.60
+    hsn_high: 0.50
+    state_high: 0.60
+
+  # Minimum counts to infer systemic root cause patterns
+  pattern_thresholds:
+    min_rule_recurrence: 2
+    min_counterparty_invoices: 2
+    min_period_recurrence: 2

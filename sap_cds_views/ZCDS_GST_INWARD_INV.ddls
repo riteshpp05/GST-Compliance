@@ -1,0 +1,35 @@
+@AbapCatalog.sqlViewName: 'ZV_GST_INW_INV'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'UC15 GST Agent - Inward Vendor Invoices CDS View'
+@OData.publish: true
+
+define view ZCDS_GST_INWARD_INV
+  as select from rbkp as Header
+  inner join   rseg as Item   on  Header.belnr = Item.belnr
+                               and Header.gjahr = Item.gjahr
+  left outer join lfa1 as Vendor on Header.lifre = Vendor.lifnr
+  left outer join bseg as FIDoc  on  Header.belnr = FIDoc.belnr
+                               and Header.gjahr = FIDoc.gjahr
+                               and FIDoc.koart   = 'K'
+{
+  key Header.belnr                        as SupplierInvoice,
+  key Header.gjahr                        as FiscalYear,
+  key Item.buzei                          as InvoiceItem,
+
+      Header.bldat                        as InvoiceDate,
+      Header.budat                        as PostingDate,
+      Header.lifre                        as VendorNumber,
+      Vendor.name1                        as VendorName,
+      Vendor.stcd3                        as VendorGSTIN,
+
+      Item.ebeln                          as PurchaseOrder,
+      Item.ebelp                          as PurchaseOrderItem,
+      Item.wrbtr                          as TaxableValue,
+
+      // Payment Block & Clearing Status for Section 16(2) 180-Day Rule
+      FIDoc.zlspr                         as PaymentBlockKey,
+      FIDoc.augdt                         as ClearingDate,
+      FIDoc.augbl                         as ClearingDocumentNumber
+}

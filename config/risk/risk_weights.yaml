@@ -1,0 +1,25 @@
+# UC15 GST Compliance Agent — Risk Weight Configuration
+# Transparent engineering defaults for severity, category, and compounding risk contributions
+risk_weights:
+  severity:
+    INFO: 0.0
+    LOW: 5.0
+    MEDIUM: 15.0
+    HIGH: 25.0
+    CRITICAL: 40.0
+
+  category:
+    MASTER_DATA: 5.0
+    CLASSIFICATION: 10.0
+    TAX: 20.0
+    PLACE_OF_SUPPLY: 15.0
+    EWAY_BILL: 10.0
+    ITC: 20.0
+    DATA_QUALITY: 5.0
+    OTHER: 5.0
+
+  multiple_findings_penalty: 10.0      # Additional score added per additional statutory failure beyond 1
+  max_multiple_findings_penalty: 30.0  # Cap on multiple findings penalty
+  warning_severity_factor: 0.5         # Weights applied to WARNING status (50% of FAIL severity)
+  data_quality_penalty: 5.0            # Penalty per failed data quality pre-check
+  max_data_quality_penalty: 15.0       # Cap on data quality penalty

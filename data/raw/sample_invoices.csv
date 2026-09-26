@@ -1,0 +1,7 @@
+invoice_no,invoice_date,direction,counterparty_gstin,counterparty_name,place_of_supply,hsn_code,item_desc,taxable_value_inr,cgst_rate,sgst_rate,igst_rate,total_amt,eway_bill_status,gstr2b_reflected
+INV-CSV-001,2026-03-01,AR,27AAACB1234A1ZJ,Bosch India Ltd,Maharashtra,8409,Engine valves,35000,9,9,0,41300,,YES
+INV-CSV-002,2026-03-02,AR,07AAACH8901C1Z1,Hero MotoCorp,Delhi,8483,Transmission gears,65000,0,0,18,76700,GENERATED,YES
+INV-CSV-003,2026-03-03,AP,29AAACM2345D1Z7,Tata Motors,Karnataka,8708,Suspension brackets,88000,0,0,28,112640,GENERATED,YES
+INV-CSV-004,2026-03-04,AR,27INVALID123,Malformed Counterparty,Maharashtra,8409,Connecting rods,25000,9,9,0,29500,,YES
+INV-CSV-005,2026-03-05,AP,27AAACB1234A1ZJ,Local Catering Co,Maharashtra,8409,Employee welfare lunch catering,15000,9,9,0,17700,,YES
+INV-CSV-006,2026-03-06,AR,27AAACB1234A1ZJ,Bajaj Auto Ltd,Maharashtra,8409,Cylinder block,95000,9,9,0,112100,PENDING,YES

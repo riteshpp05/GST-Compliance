@@ -1,0 +1,40 @@
+# UC15 GST Compliance Agent — Anomaly Intelligence Policy Configuration
+# Controls baseline hierarchy, sample size gates, statistical parameters, and severity boundaries
+anomaly_policy:
+  version: "1.0"
+
+  # Baseline selection hierarchy: Counterparty -> HSN -> Portfolio
+  baseline_hierarchy:
+    - "COUNTERPARTY"
+    - "HSN"
+    - "PORTFOLIO"
+
+  # Minimum historical observations required to establish a valid baseline
+  minimum_observations:
+    counterparty: 3
+    hsn: 5
+    portfolio: 10
+
+  # Statistical calculation parameters
+  statistical_method: "ROBUST_Z_SCORE_AND_IQR"
+
+  # Interquartile Range (IQR) parameters
+  iqr:
+    outlier_multiplier: 1.5
+    extreme_multiplier: 3.0
+
+  # Robust Z-score (median + MAD) thresholds
+  robust_z:
+    threshold_medium: 2.5
+    threshold_high: 3.5
+    threshold_critical: 5.0
+
+  # Tax rate anomaly detection boundaries
+  tax_rate:
+    statutory_rates: [0.0, 5.0, 12.0, 18.0, 28.0]
+    tolerance_pct: 0.5
+
+  # Transaction frequency burst detection
+  frequency:
+    window_days: 7
+    burst_multiplier: 3.0

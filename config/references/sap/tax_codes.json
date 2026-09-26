@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "source": "SAP FI Tax Code Configuration / Statutory Mapping",
+  "sap_tax_codes": [
+    {
+      "tax_code": "V1",
+      "country": "IN",
+      "tax_type": "INPUT",
+      "description": "Input Tax IGST 18%",
+      "statutory_rate": 0.18,
+      "cgst_rate": 0.00,
+      "sgst_rate": 0.00,
+      "igst_rate": 0.18,
+      "is_rcm": false,
+      "valid_from": "2017-07-01",
+      "valid_to": null
+    },
+    {
+      "tax_code": "V2",
+      "country": "IN",
+      "tax_type": "INPUT",
+      "description": "Input Tax CGST 9% + SGST 9%",
+      "statutory_rate": 0.18,
+      "cgst_rate": 0.09,
+      "sgst_rate": 0.09,
+      "igst_rate": 0.00,
+      "is_rcm": false,
+      "valid_from": "2017-07-01",
+      "valid_to": null
+    },
+    {
+      "tax_code": "V3",
+      "country": "IN",
+      "tax_type": "INPUT_RCM",
+      "description": "Input RCM IGST 18%",
+      "statutory_rate": 0.18,
+      "cgst_rate": 0.00,
+      "sgst_rate": 0.00,
+      "igst_rate": 0.18,
+      "is_rcm": true,
+      "valid_from": "2017-07-01",
+      "valid_to": null
+    },
+    {
+      "tax_code": "A1",
+      "country": "IN",
+      "tax_type": "OUTPUT",
+      "description": "Output Tax IGST 18%",
+      "statutory_rate": 0.18,
+      "cgst_rate": 0.00,
+      "sgst_rate": 0.00,
+      "igst_rate": 0.18,
+      "is_rcm": false,
+      "valid_from": "2017-07-01",
+      "valid_to": null
+    },
+    {
+      "tax_code": "O1",
+      "country": "IN",
+      "tax_type": "EXEMPT",
+      "description": "Exempt / Zero Rated Supply",
+      "statutory_rate": 0.00,
+      "cgst_rate": 0.00,
+      "sgst_rate": 0.00,
+      "igst_rate": 0.00,
+      "is_rcm": false,
+      "valid_from": "2017-07-01",
+      "valid_to": null
+    }
+  ]
+}

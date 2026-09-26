@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "source": "Section 17(5) CGST Act 2017 Blocked Credit Master",
+  "blocked_credits": [
+    {
+      "clause": "17(5)(a)",
+      "category": "MOTOR_VEHICLE",
+      "hsn_sac_prefixes": ["8702", "8703"],
+      "description": "Motor vehicles for transportation of persons having approved seating capacity of not more than 13 persons",
+      "override_permitted_purposes": ["FURTHER_SUPPLY", "PASSENGER_TRANSPORT", "DRIVING_TRAINING"]
+    },
+    {
+      "clause": "17(5)(b)(i)",
+      "category": "CATERING_FOOD_BEVERAGE",
+      "hsn_sac_prefixes": ["9963"],
+      "description": "Food and beverages, outdoor catering, beauty treatment, health services, cosmetic and plastic surgery",
+      "override_permitted_purposes": ["OBLIGATORY_EMPLOYER_LAW"]
+    },
+    {
+      "clause": "17(5)(b)(ii)",
+      "category": "CLUB_MEMBERSHIP",
+      "hsn_sac_prefixes": ["9995"],
+      "description": "Membership of a club, health and fitness centre",
+      "override_permitted_purposes": []
+    },
+    {
+      "clause": "17(5)(c)",
+      "category": "WORKS_CONTRACT_CONSTRUCTION",
+      "hsn_sac_prefixes": ["9954"],
+      "description": "Works contract services supplied for construction of an immovable property (other than plant and machinery)",
+      "override_permitted_purposes": ["INPUT_FOR_WORKS_CONTRACT"]
+    },
+    {
+      "clause": "17(5)(d)",
+      "category": "OWN_CONSTRUCTION",
+      "hsn_sac_prefixes": ["9954"],
+      "description": "Goods or services received by taxable person for construction of immovable property on own account",
+      "override_permitted_purposes": ["PLANT_AND_MACHINERY"]
+    },
+    {
+      "clause": "17(5)(h)",
+      "category": "LOST_STOLEN_GIFTS",
+      "hsn_sac_prefixes": [],
+      "description": "Goods lost, stolen, destroyed, written off or disposed of by way of gift or free samples",
+      "override_permitted_purposes": []
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "source": "CBIC Section 9(3) / 9(4) Notifications",
+  "rcm_policies": [
+    {
+      "policy_id": "RCM_GTA_001",
+      "hsn_sac": "9965",
+      "category": "Goods Transport Agency",
+      "notification": "Notification No. 13/2017-Central Tax (Rate)",
+      "section": "9(3)",
+      "effective_from": "2017-07-01",
+      "effective_to": null,
+      "supplier_status": "GTA",
+      "recipient_type": "REGISTERED_BUSINESS",
+      "tax_rate": 0.05,
+      "tax_treatment": "REVERSE_CHARGE",
+      "itc_treatment": "ELIGIBLE_RECIPIENT_LEDGER"
+    },
+    {
+      "policy_id": "RCM_LEGAL_001",
+      "hsn_sac": "9983",
+      "category": "Legal Services by Advocate / Firm",
+      "notification": "Notification No. 13/2017-Central Tax (Rate)",
+      "section": "9(3)",
+      "effective_from": "2017-07-01",
+      "effective_to": null,
+      "supplier_status": "ADVOCATE",
+      "recipient_type": "REGISTERED_BUSINESS",
+      "tax_rate": 0.18,
+      "tax_treatment": "REVERSE_CHARGE",
+      "itc_treatment": "ELIGIBLE_RECIPIENT_LEDGER"
+    },
+    {
+      "policy_id": "RCM_SCRAP_001",
+      "hsn_sac": "7204",
+      "category": "Metal Scrap",
+      "notification": "Notification No. 25/2024-Central Tax (Rate)",
+      "section": "9(3)",
+      "effective_from": "2024-10-10",
+      "effective_to": null,
+      "supplier_status": "UNREGISTERED",
+      "recipient_type": "REGISTERED_PERSON",
+      "tax_rate": 0.18,
+      "tax_treatment": "REVERSE_CHARGE",
+      "itc_treatment": "ELIGIBLE_RECIPIENT_LEDGER"
+    },
+    {
+      "policy_id": "RCM_EWASTE_001",
+      "hsn_sac": "8548",
+      "category": "E-Waste Scrap",
+      "notification": "Notification No. 25/2024-Central Tax (Rate)",
+      "section": "9(3)",
+      "effective_from": "2024-10-10",
+      "effective_to": null,
+      "supplier_status": "UNREGISTERED",
+      "recipient_type": "REGISTERED_PERSON",
+      "tax_rate": 0.18,
+      "tax_treatment": "REVERSE_CHARGE",
+      "itc_treatment": "ELIGIBLE_RECIPIENT_LEDGER"
+    }
+  ]
+}

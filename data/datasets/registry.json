@@ -1,0 +1,34 @@
+[
+  {
+    "id": "DS-SAP-S4HANA-HYBRID",
+    "name": "SAP S/4HANA (Docs 8094-8104, 90000000+ & 6-Gate Test Suite)",
+    "file_name": "SAP_S4HANA_Live_Dataset.xlsx",
+    "file_path": "data\\\\SAP_S4HANA_Live_Dataset.xlsx",
+    "file_format": "EXCEL",
+    "size_bytes": 14119,
+    "upload_timestamp": "2026-09-26T10:45:00.000000+00:00",
+    "uploaded_by": "SAP S/4HANA Integration Agent",
+    "invoice_count": 56,
+    "hsn_master_count": 16,
+    "state_code_count": 12,
+    "status": "VALIDATED",
+    "is_active": true,
+    "is_deletable": false
+  },
+  {
+    "id": "DS-SYNTHETIC-DEFAULT",
+    "name": "Synthetic GST Benchmark Dataset (100 Invoices)",
+    "file_name": "UC15_GSTCompliance_Dataset.xlsx",
+    "file_path": "data\\\\UC15_GSTCompliance_Dataset.xlsx",
+    "file_format": "EXCEL",
+    "size_bytes": 10228,
+    "upload_timestamp": "2026-09-21T12:44:28.000000+00:00",
+    "uploaded_by": "System Benchmark",
+    "invoice_count": 99,
+    "hsn_master_count": 10,
+    "state_code_count": 12,
+    "status": "VALIDATED",
+    "is_active": false,
+    "is_deletable": false
+  }
+]

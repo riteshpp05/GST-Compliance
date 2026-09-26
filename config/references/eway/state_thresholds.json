@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "source": "State GST Notifications & NIC E-Way Bill Portal",
+  "default_inter_state_threshold": 50000.0,
+  "default_intra_state_threshold": 50000.0,
+  "state_thresholds": [
+    {
+      "state_code": "07",
+      "state_name": "Delhi",
+      "intra_state_threshold": 100000.0,
+      "notification": "SGST Notification No. 3/2018"
+    },
+    {
+      "state_code": "27",
+      "state_name": "Maharashtra",
+      "intra_state_threshold": 100000.0,
+      "notification": "MH GST Notification No. 4/2019"
+    },
+    {
+      "state_code": "08",
+      "state_name": "Rajasthan",
+      "intra_state_threshold": 100000.0,
+      "intra_city_threshold": 200000.0,
+      "notification": "RJ GST Notification 2018"
+    },
+    {
+      "state_code": "33",
+      "state_name": "Tamil Nadu",
+      "intra_state_threshold": 100000.0,
+      "notification": "TN SGST Notification 2018"
+    },
+    {
+      "state_code": "19",
+      "state_name": "West Bengal",
+      "intra_state_threshold": 100000.0,
+      "notification": "WB SGST Notification 2018"
+    },
+    {
+      "state_code": "03",
+      "state_name": "Punjab",
+      "intra_state_threshold": 100000.0,
+      "notification": "PB SGST Notification 2018"
+    },
+    {
+      "state_code": "10",
+      "state_name": "Bihar",
+      "intra_state_threshold": 100000.0,
+      "notification": "BR SGST Notification 2018"
+    },
+    {
+      "state_code": "20",
+      "state_name": "Jharkhand",
+      "intra_state_threshold": 100000.0,
+      "notification": "JH SGST Notification 2018"
+    },
+    {
+      "state_code": "23",
+      "state_name": "Madhya Pradesh",
+      "intra_state_threshold": 100000.0,
+      "notification": "MP SGST Notification 2018"
+    },
+    {
+      "state_code": "32",
+      "state_name": "Kerala",
+      "intra_state_threshold": 50000.0,
+      "gold_threshold": 1000000.0,
+      "notification": "KL SGST Gold Exception Notification"
+    }
+  ]
+}

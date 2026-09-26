@@ -1,0 +1,56 @@
+{
+  "description": "UC15 Sample JSON Invoices Dataset",
+  "invoices": [
+    {
+      "invoice_no": "INV-JSON-001",
+      "invoice_date": "2026-03-01",
+      "direction": "AR",
+      "counterparty_gstin": "27AAACB1234A1ZJ",
+      "counterparty_name": "Bosch India Ltd",
+      "place_of_supply": "Maharashtra",
+      "hsn_code": "8409",
+      "item_desc": "Diesel fuel injection pumps",
+      "taxable_value_inr": 48000,
+      "cgst_rate": 9,
+      "sgst_rate": 9,
+      "igst_rate": 0,
+      "total_amt": 56640,
+      "eway_bill_status": "",
+      "gstr2b_reflected": true
+    },
+    {
+      "invoice_no": "INV-JSON-002",
+      "invoice_date": "2026-03-02",
+      "direction": "AR",
+      "counterparty_gstin": "07AAACH8901C1Z1",
+      "counterparty_name": "Delhi Auto Components",
+      "place_of_supply": "Delhi",
+      "hsn_code": "8483",
+      "item_desc": "Camshaft assemblies",
+      "taxable_value_inr": 110000,
+      "cgst_rate": 0,
+      "sgst_rate": 0,
+      "igst_rate": 18,
+      "total_amt": 129800,
+      "eway_bill_status": "GENERATED",
+      "gstr2b_reflected": true
+    },
+    {
+      "invoice_no": "INV-JSON-003",
+      "invoice_date": "2026-03-03",
+      "direction": "AP",
+      "counterparty_gstin": "27AAACB1234A1ZJ",
+      "counterparty_name": "Industrial Services Ltd",
+      "place_of_supply": "Maharashtra",
+      "hsn_code": "8409",
+      "item_desc": "Unreflected vendor supply",
+      "taxable_value_inr": 35000,
+      "cgst_rate": 9,
+      "sgst_rate": 9,
+      "igst_rate": 0,
+      "total_amt": 41300,
+      "eway_bill_status": "",
+      "gstr2b_reflected": false
+    }
+  ]
+}

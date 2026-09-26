@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UC15 GST Compliance Investigation Platform</title>
+  
+  <!-- Preconnect & Modern Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/css/investigation_ui.css?v=20260922_v32">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Left Navigation Sidebar -->
+    <aside class="app-sidebar" id="appSidebar">
+      <!-- Sidebar Header & Brand -->
+      <div class="sidebar-header">
+        <a href="#/overview" class="sidebar-brand">
+          <div class="brand-emblem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-sub">FI-TAX</span>
+            <span class="brand-title">GST Compliance</span>
+          </div>
+        </a>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+          <svg class="collapse-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links Container -->
+      <div class="sidebar-nav-container">
+        <!-- SINGLE UNIFIED COMPLIANCE PLATFORM GROUP -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-title">Compliance Platform</div>
+          <nav class="sidebar-nav">
+            <a href="#/overview" class="sidebar-link nav-tab active" data-tab="overview" title="Overview">
+              <svg class="sidebar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+              </svg>
+              <span class="sidebar-link-text">Overview</span>
+            </a>
+            <a href="#/compliance" class="sidebar-link nav-tab" data-tab="compliance" title="Invoice Audit Center">
+              <svg class="sidebar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <span class="sidebar-link-text">Invoice Audit Center</span>
+            </a>
+            <a href="#/ai_agent" class="sidebar-link nav-tab" data-tab="ai_agent" title="AI Investigation Agent">
+              <svg class="sidebar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span class="sidebar-link-text">AI Agent</span>
+            </a>
+            <a href="#/audit_trail" class="sidebar-link nav-tab" data-tab="audit_trail" title="Audit Trail & History">
+              <svg class="sidebar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+              </svg>
+              <span class="sidebar-link-text">Audit Trail</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Viewport (Top Bar + Dynamic View Container) -->
+    <div class="app-viewport">
+      <!-- Top Command Bar -->
+      <header class="top-command-bar">
+        <!-- Left: Current Page Title -->
+        <div class="breadcrumb-container">
+          <h2 class="breadcrumb-current" id="breadcrumbPageTitle" style="font-size:1.05rem; font-weight:700; margin:0; color:var(--text-primary);">Overview</h2>
+        </div>
+
+        <!-- Center: Global Quick Search -->
+        <div class="command-search-container" style="display:flex; align-items:center; gap:8px;">
+          <div class="command-search-box" style="flex:1;">
+            <svg class="command-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="globalSearchInput" placeholder="Search cases, invoices, vendors, GSTINs... (/)" autocomplete="off">
+            <kbd class="search-kbd-hint">/</kbd>
+          </div>
+        </div>
+
+        <!-- Right: Actions & Execution Button -->
+        <div class="command-bar-actions" style="display:flex; align-items:center; gap:10px;">
+          <!-- SAP S/4HANA Live Integration Badge -->
+          <div id="sapConnectionBadge" style="display:flex; align-items:center; gap:6px; background:rgba(16, 185, 129, 0.12); border:1px solid rgba(16, 185, 129, 0.3); border-radius:6px; padding:4px 10px; font-size:11px; font-weight:600; color:#10b981;" title="SAP S/4HANA OData V4 Service Z_GST_SB (Company Code: DI01 | Client: 200)">
+            <span style="width:7px; height:7px; border-radius:50%; background:#10b981; display:inline-block; box-shadow:0 0 6px #10b981;"></span>
+            <span>SAP S/4HANA: DI01 (Client 200)</span>
+          </div>
+
+          <button class="btn btn-primary btn-command-run" id="globalRunBtn" title="Execute GST Statutory Engine (S1–S9)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Run Pipeline</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dynamic View Mount Container -->
+      <main class="app-main" id="viewMount">
+        <div class="empty-state-card" style="padding:100px 20px; text-align:center;">
+          <div class="loading-spinner-ring"></div>
+          <h3 style="font-size:18px; font-weight:700; color:var(--text-primary); margin-top:16px;">Loading Compliance Intelligence Workspace</h3>
+          <p style="font-size:13px; color:var(--text-secondary); margin-top:6px;">Synthesizing statutory validations, risk scores, and root cause evidence...</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Toast Notifications Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Client Scripts -->
+  <script src="/static/js/api.js?v=20260925_v3"></script>
+  <script src="/static/js/charts.js?v=20260925_v3"></script>
+  <script src="/static/js/router.js?v=20260925_v3"></script>
+  <script src="/static/js/views/overview.js?v=20260925_v3"></script>
+  <script src="/static/js/views/compliance.js?v=20260925_v3"></script>
+  <script src="/static/js/views/investigations.js?v=20260925_v3"></script>
+  <script src="/static/js/views/invoice_detail.js?v=20260925_v3"></script>
+  <script src="/static/js/views/deep_dives.js?v=20260925_v3"></script>
+  <script src="/static/js/views/ai_agent.js?v=20260925_v3"></script>
+  <script src="/static/js/views/case_management.js?v=20260925_v3"></script>
+  <script src="/static/js/views/workspace.js?v=20260925_v3"></script>
+  <script src="/static/js/views/ingestion.js?v=20260925_v3"></script>
+  <script src="/static/js/views/audit_trail.js?v=20260926_v1"></script>
+  <script src="/static/js/app.js?v=20260925_v3"></script>
+</body>
+</html>

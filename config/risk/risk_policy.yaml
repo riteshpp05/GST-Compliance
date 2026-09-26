@@ -1,0 +1,29 @@
+# UC15 GST Compliance Agent — Risk Policy Configuration
+# Controls priority assignment, critical finding overrides, and confidence evaluation
+risk_policy:
+  model_version: "1.0"
+
+  # Priority assignment based on evaluated Risk Level
+  priority_mapping:
+    CRITICAL: "P1"
+    HIGH: "P2"
+    MEDIUM: "P3"
+    MODERATE: "P4"
+    LOW: "P4"
+
+  # Critical finding overrides
+  critical_override:
+    enabled: true
+    min_score_floor: 80.0
+    min_risk_level: "CRITICAL"
+    force_priority: "P1"
+
+  # Confidence assessment rules and thresholds
+  confidence:
+    high_threshold: 0.90
+    medium_threshold: 0.70
+    penalties:
+      missing_hsn_master: 0.20
+      unmatched_gstr2b: 0.15
+      data_quality_failure: 0.10
+      missing_state_ref: 0.10

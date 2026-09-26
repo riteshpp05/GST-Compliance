@@ -1,0 +1,38 @@
+@AbapCatalog.sqlViewName: 'ZV_GST_OUT_INV'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'UC15 GST Agent - Outward Sales Invoices CDS View'
+@OData.publish: true
+
+define view ZCDS_GST_OUTWARD_INV
+  as select from vbrk as Header
+  inner join   vbrp as Item   on Header.vbeln = Item.vbeln
+  left outer join kna1 as Customer on Header.kunag = Customer.kunnr
+  left outer join j_1ig_ewaybill as EWB on  Header.vbeln = EWB.docno
+                                      and EWB.doctyp    = 'INV'
+  left outer join j_1ig_inv      as IRN on  Header.vbeln = IRN.docno
+{
+  key Header.vbeln                        as BillingDocument,
+  key Item.posnr                          as BillingDocumentItem,
+
+      Header.fkdat                        as InvoiceDate,
+      Header.bukrs                        as CompanyCode,
+      Header.fkart                        as DocumentType,
+      Header.kunag                        as CustomerNumber,
+      Customer.name1                      as CustomerName,
+      Customer.stcd3                      as CustomerGSTIN,
+      Customer.pstlz                      as CustomerPINCode,
+
+      Item.matnr                          as MaterialNumber,
+      Item.arktx                          as ItemDescription,
+      Item.netwr                          as TaxableValue,
+
+      // E-Invoice & E-Way Bill Persistence
+      EWB.ebillno                         as EWayBillNumber,
+      EWB.vdtodate                        as EWayBillValidToDate,
+      EWB.veh_no                          as VehicleNumber,
+      EWB.status                          as EWayBillStatus,
+      IRN.irn                             as EInvoiceIRN,
+      IRN.status                          as EInvoiceStatus
+}

@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: uc15_compliance_agent
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - PERSISTENCE_BACKEND=postgresql
+      - DATABASE_URL=postgresql://uc15_user:uc15_password@db:5432/uc15_compliance_db
+      - SECRET_KEY=prod-secret-key-change-me-in-vault
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    container_name: uc15_postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=uc15_user
+      - POSTGRES_PASSWORD=uc15_password
+      - POSTGRES_DB=uc15_compliance_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U uc15_user -d uc15_compliance_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

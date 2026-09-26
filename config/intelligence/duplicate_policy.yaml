@@ -1,0 +1,45 @@
+# UC15 GST Compliance Agent — Duplicate Intelligence Policy Configuration
+# Defines deterministic weights, normalization parameters, thresholds, and false-positive controls
+duplicate_policy:
+  version: "1.0"
+
+  # Normalization rules for invoice attributes
+  normalization:
+    strip_whitespace: true
+    uppercase: true
+    remove_separators: true   # strips '-', '/', ' ' from invoice number during comparison
+
+  # Weighted scoring for structured near-duplicate detection (sum = 100.0)
+  weights:
+    supplier_gstin_match: 30.0
+    buyer_gstin_match: 15.0
+    invoice_number_similarity: 25.0
+    date_proximity: 15.0
+    taxable_value_similarity: 10.0
+    tax_amount_similarity: 5.0
+
+  # Classification thresholds
+  thresholds:
+    exact_match: 100.0
+    high_confidence_near: 85.0
+    possible_duplicate: 65.0
+
+  # Date proximity brackets (days -> points fraction)
+  date_proximity_brackets:
+    same_day: 0
+    tight_days: 3
+    moderate_days: 7
+    loose_days: 30
+
+  # Amount tolerance percentages
+  amount_tolerance_pct:
+    exact: 0.0
+    tight: 1.0
+    moderate: 5.0
+
+  # False positive controls for recurring transactions (subscriptions, rent, monthly supplies)
+  recurring_protection:
+    enabled: true
+    min_days_separation: 25
+    max_days_separation: 35
+    number_similarity_ceiling: 0.85

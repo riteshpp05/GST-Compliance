@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sidebar-width: 224px;
+    --sidebar-collapsed: 60px;
+    --topbar-height: 56px;
+  }
+
+  * { box-sizing: border-box; }
+
+  /* Official Lenis Smooth Scroll Core Rules */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-gray-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-gray-400; }
+
+  ::selection { @apply bg-blue-100 text-blue-900; }
+}
+
+@layer components {
+
+  /* ── Sidebar ─────────────────────────────────────────────────────── */
+  .sidebar {
+    @apply fixed left-0 top-0 h-full z-50 flex flex-col bg-white border-r border-gray-100;
+    width: var(--sidebar-width);
+    transition: width 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .sidebar.collapsed { width: var(--sidebar-collapsed); }
+
+  /* ── Nav link ────────────────────────────────────────────────────── */
+  .nav-link {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium
+           text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all duration-150 relative;
+  }
+  .nav-link.active {
+    @apply text-blue-600 bg-blue-50;
+  }
+  .nav-link.active::before {
+    content: '';
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-blue-500 rounded-r-full;
+  }
+
+  /* ── Topbar ──────────────────────────────────────────────────────── */
+  .topbar {
+    @apply fixed top-0 right-0 z-40 flex items-center gap-4 px-6 bg-white border-b border-gray-100;
+    height: var(--topbar-height);
+    left: var(--sidebar-width);
+    transition: left 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .topbar.sidebar-collapsed { left: var(--sidebar-collapsed); }
+
+  /* ── Main ────────────────────────────────────────────────────────── */
+  .main-content {
+    padding-top: var(--topbar-height);
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    transition: margin-left 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .main-content.sidebar-collapsed { margin-left: var(--sidebar-collapsed); }
+
+  /* ── Card ────────────────────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-xl border border-gray-100 shadow-sm;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-200;
+  }
+
+  /* ── KPI card ────────────────────────────────────────────────────── */
+  .kpi-card {
+    @apply card p-5;
+  }
+
+  /* ── Panel ───────────────────────────────────────────────────────── */
+  .panel {
+    @apply card p-6;
+  }
+  .panel-title {
+    @apply text-sm font-semibold text-gray-900 flex items-center gap-2;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold
+           text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800
+           transition-all duration-150 shadow-sm hover:shadow-md;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold
+           text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300
+           transition-all duration-150 shadow-sm;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] font-medium
+           text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-150;
+  }
+
+  /* ── Badge ───────────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md;
+  }
+  .badge-green  { @apply bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200; }
+  .badge-red    { @apply bg-red-50 text-red-700 ring-1 ring-red-200; }
+  .badge-amber  { @apply bg-amber-50 text-amber-700 ring-1 ring-amber-200; }
+  .badge-blue   { @apply bg-blue-50 text-blue-700 ring-1 ring-blue-200; }
+  .badge-purple { @apply bg-purple-50 text-purple-700 ring-1 ring-purple-200; }
+  .badge-slate  { @apply bg-gray-100 text-gray-600 ring-1 ring-gray-200; }
+  .badge-orange { @apply bg-orange-50 text-orange-700 ring-1 ring-orange-200; }
+
+  /* ── Input ───────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-gray-900
+           placeholder:text-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50
+           transition-all duration-150;
+  }
+  .select-field {
+    @apply bg-white border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-gray-700
+           focus:outline-none focus:border-blue-400 transition-all duration-150 cursor-pointer;
+  }
+
+  /* ── Table ───────────────────────────────────────────────────────── */
+  .data-table { @apply w-full text-[13px]; }
+  .data-table th {
+    @apply text-left text-[11px] font-semibold text-gray-500 uppercase tracking-wider
+           px-4 py-3 bg-gray-50 border-b border-gray-100;
+  }
+  .data-table td { @apply px-4 py-3 border-b border-gray-50 text-gray-700; }
+  .data-table tbody tr { @apply hover:bg-blue-50/50 transition-colors duration-100 cursor-pointer; }
+
+  /* ── Gate dots ───────────────────────────────────────────────────── */
+  .gate-dot { @apply w-2 h-2 rounded-full inline-block; }
+  .gate-pass { @apply bg-emerald-500; }
+  .gate-fail { @apply bg-red-500; }
+  .gate-warn { @apply bg-amber-400; }
+  .gate-na   { @apply bg-gray-300; }
+
+  /* ── Progress bar ────────────────────────────────────────────────── */
+  .progress-bar { @apply h-2 rounded-full bg-gray-100 overflow-hidden; }
+  .progress-fill { @apply h-full rounded-full transition-all duration-1000 ease-out; }
+
+  /* ── Skeleton ────────────────────────────────────────────────────── */
+  .skeleton { @apply rounded-lg bg-gray-100 animate-pulse; }
+
+  /* ── Divider ─────────────────────────────────────────────────────── */
+  .divider { @apply h-px bg-gray-100; }
+
+  /* ── Stat label ──────────────────────────────────────────────────── */
+  .stat-label { @apply text-[11px] font-medium text-gray-400 uppercase tracking-wider; }
+  .stat-value { @apply text-2xl font-bold text-gray-900 tabular-nums; }
+
+  /* ── Section header ──────────────────────────────────────────────── */
+  .section-title  { @apply text-[15px] font-semibold text-gray-900; }
+  .section-sub    { @apply text-[12px] text-gray-400 mt-0.5; }
+
+  /* ── Chat bubble ─────────────────────────────────────────────────── */
+  .bubble-user { @apply bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-[13px] leading-relaxed; }
+  .bubble-bot  { @apply bg-white border border-gray-100 text-gray-800 rounded-2xl rounded-tl-sm px-4 py-2.5 text-[13px] leading-relaxed shadow-sm; }
+
+  /* ── Drop zone ───────────────────────────────────────────────────── */
+  .dropzone {
+    @apply border-2 border-dashed border-gray-200 rounded-xl p-10 text-center
+           hover:border-blue-300 hover:bg-blue-50/30 transition-all duration-200 cursor-pointer;
+  }
+  .dropzone.dragging {
+    @apply border-blue-400 bg-blue-50;
+  }
+
+  /* ── Timeline dot ────────────────────────────────────────────────── */
+  .timeline-dot {
+    @apply absolute -left-[19px] top-3 w-3 h-3 rounded-full bg-white border-2 border-gray-300 flex-shrink-0;
+  }
+
+  /* ── Scroll thin ─────────────────────────────────────────────────── */
+  .scroll-thin { scrollbar-width: thin; scrollbar-color: #e5e7eb transparent; }
+}
+
+@layer utilities {
+  .text-gradient-blue {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #2563EB, #7C3AED);
+  }
+  .delay-75  { animation-delay: 75ms; }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-150 { animation-delay: 150ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+}

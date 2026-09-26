@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Configuration and secrets
+.env
+*.env.local
+.env.*
+!.env.example
+
+# Local databases and scratch files
+scratch/
+*.sqlite
+*.sqlite3
+*.db
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Results / Output files (preserve directory)
+results/*
+!results/.gitkeep
+data/uploads/*
+!data/uploads/.gitkeep
+logs/*.log
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db

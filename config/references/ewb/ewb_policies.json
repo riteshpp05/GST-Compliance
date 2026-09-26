@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "source": "CBIC / GST Council E-Way Bill System Rules",
+  "ewb_policies": [
+    {
+      "policy_id": "EWB_NAT_001",
+      "version": "1.0",
+      "effective_from": "2018-04-01",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Rule 138 of CGST Rules, 2017",
+      "name": "National Statutory E-Way Bill Policy",
+      "threshold": "50000.00",
+      "state_code": null,
+      "interstate_threshold": "50000.00",
+      "intrastate_threshold": "50000.00",
+      "exempted_hsn": ["0101"],
+      "description": "Statutory nationwide threshold of INR 50,000 for inter-state and intra-state movement of goods"
+    },
+    {
+      "policy_id": "EWB_MH_001",
+      "version": "1.0",
+      "effective_from": "2019-02-01",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Maharashtra GST Notification No. 4/2019",
+      "name": "Maharashtra Intra-State E-Way Bill Concession Policy",
+      "threshold": "50000.00",
+      "state_code": "27",
+      "interstate_threshold": "50000.00",
+      "intrastate_threshold": "100000.00",
+      "exempted_hsn": ["0101"],
+      "description": "Maharashtra state-specific intra-state movement threshold elevated to INR 1,00,000"
+    },
+    {
+      "policy_id": "EWB_DL_001",
+      "version": "1.0",
+      "effective_from": "2018-06-16",
+      "effective_to": null,
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Delhi SGST Notification No. 3/2018",
+      "name": "Delhi Intra-State E-Way Bill Policy",
+      "threshold": "50000.00",
+      "state_code": "07",
+      "interstate_threshold": "50000.00",
+      "intrastate_threshold": "100000.00",
+      "exempted_hsn": ["0101"],
+      "description": "Delhi state intra-state movement threshold elevated to INR 1,00,000"
+    },
+    {
+      "policy_id": "EWB_HISTORICAL_EXP",
+      "version": "1.0",
+      "effective_from": "2017-07-01",
+      "effective_to": "2018-03-31",
+      "status": "ACTIVE",
+      "source": "OFFICIAL_GST",
+      "source_reference": "Transition Window Notification",
+      "name": "Trial E-Way Bill Period Policy",
+      "threshold": "100000.00",
+      "state_code": null,
+      "interstate_threshold": "100000.00",
+      "intrastate_threshold": "100000.00",
+      "exempted_hsn": [],
+      "description": "Expired trial policy for historical testing"
+    }
+  ]
+}

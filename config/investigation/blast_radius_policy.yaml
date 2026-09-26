@@ -1,0 +1,31 @@
+# UC15 GST Compliance Agent — Blast Radius Intelligence Policy Configuration
+# Defines deterministic thresholds for trend classification, systemic boundaries, and dimension analysis.
+blast_radius_policy:
+  version: "1.0"
+
+  # Temporal trend parameters
+  trend_analysis:
+    min_periods_required: 2
+    expansion_threshold_pct: 15.0      # +15% count increase over sequence
+    contraction_threshold_pct: -15.0   # -15% count decrease
+    sudden_onset_ratio: 0.50          # Current period represents >= 50% of all occurrences with few/none prior
+    stability_tolerance_pct: 10.0      # within +/- 10%
+
+  # Systemic vs Isolated Classification criteria
+  classification:
+    min_population_for_systemic: 3
+    isolated_max_invoices: 2
+    isolated_max_counterparties: 1
+    isolated_max_ratio: 0.05
+    concentrated_share_threshold: 0.60
+    systemic_min_counterparties: 3
+    systemic_min_periods: 2
+    systemic_min_ratio: 0.15
+
+  # Display and aggregation limits
+  dimension_limits:
+    top_counterparties: 10
+    top_rules: 10
+    top_periods: 12
+    top_hsns: 10
+    top_states: 10
