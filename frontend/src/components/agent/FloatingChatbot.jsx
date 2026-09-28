@@ -95,7 +95,7 @@ function TypewriterText({ content, isTyping, onComplete }) {
   )
 }
 
-export default function FloatingChatbot() {
+export default function FloatingChatbot({ isDrawerOpen = false }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const [showThreadDrawer, setShowThreadDrawer] = useState(false)
@@ -110,6 +110,19 @@ export default function FloatingChatbot() {
 
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
+
+  // Listen for external trigger events (e.g. from Case Drawer "Ask Copilot")
+  useEffect(() => {
+    const handleContextEvent = (e) => {
+      const prompt = e.detail?.prompt
+      setIsOpen(true)
+      if (prompt) {
+        setTimeout(() => handleSend(prompt), 350)
+      }
+    }
+    window.addEventListener('open-gst-copilot', handleContextEvent)
+    return () => window.removeEventListener('open-gst-copilot', handleContextEvent)
+  }, [activeThreadId, isThinking])
 
   // Current active thread
   const activeThread = threads.find((t) => t.id === activeThreadId) || threads[0]
@@ -280,6 +293,10 @@ export default function FloatingChatbot() {
     }
   }
 
+  const dynamicRight = isDrawerOpen
+    ? 'calc(min(42.5rem, calc(100vw - 120px)) + 1.25rem)'
+    : '1.5rem'
+
   return (
     <>
       {/* ── Floating Action Trigger Button (Bottom-Right) ───────────────── */}
@@ -289,8 +306,12 @@ export default function FloatingChatbot() {
           setIsOpen(!isOpen)
         }}
         style={{ zIndex: 99999 }}
+        animate={{
+          right: dynamicRight,
+        }}
+        transition={{ type: 'spring', damping: 28, stiffness: 280 }}
         className={cn(
-          'fixed bottom-6 right-6 flex items-center gap-3 px-4 py-3 rounded-full shadow-2xl border transition-all duration-200 cursor-pointer select-none',
+          'fixed bottom-6 flex items-center gap-3 px-4 py-3 rounded-full shadow-2xl border transition-colors duration-200 cursor-pointer select-none',
           isOpen
             ? 'bg-gray-900 text-white border-gray-800'
             : 'bg-white hover:bg-gray-50 text-gray-900 border-gray-200 hover:shadow-2xl hover:border-blue-500'
@@ -330,12 +351,13 @@ export default function FloatingChatbot() {
               opacity: 1,
               y: 0,
               scale: 1,
+              right: dynamicRight,
               width: isExpanded ? '880px' : '440px',
               height: isExpanded ? '720px' : '600px',
             }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-            style={{ bottom: '84px', right: '24px', zIndex: 99999 }}
+            style={{ bottom: '84px', zIndex: 99999 }}
             className="fixed max-w-[calc(100vw-2.5rem)] max-h-[calc(100vh-6.5rem)] bg-white rounded-2xl border border-gray-200/90 shadow-2xl flex overflow-hidden font-sans"
           >
             {/* ── Left Rail: Multi-Thread List (Visible in Expanded or Drawer mode) ── */}

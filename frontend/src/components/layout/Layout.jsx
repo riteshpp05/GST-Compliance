@@ -21,6 +21,8 @@ export default function Layout() {
     localStorage.setItem('sidebar_collapsed', next)
   }
 
+  const isDrawerOpen = Boolean(location.pathname.match(/^\/(cases|investigations)\/[^/]+$/))
+
   /* Lenis smooth scroll with nested scroll support */
   useEffect(() => {
     let rafId
@@ -28,13 +30,16 @@ export default function Layout() {
 
     import('lenis').then(({ default: Lenis }) => {
       lenisInstance = new Lenis({
-        lerp: 0.09,
-        duration: 1.0,
+        lerp: 0.1,
+        duration: 0.9,
         smoothWheel: true,
-        allowNestedScroll: true,
         anchors: true,
+        prevent: (node) =>
+          node.hasAttribute('data-lenis-prevent') ||
+          Boolean(node.closest?.('[data-lenis-prevent]')),
       })
       lenisRef.current = lenisInstance
+      window.__lenis = lenisInstance
 
       function raf(time) {
         lenisInstance.raf(time)
@@ -45,9 +50,27 @@ export default function Layout() {
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
-      if (lenisInstance) lenisInstance.destroy()
+      if (lenisInstance) {
+        lenisInstance.destroy()
+        window.__lenis = null
+      }
     }
   }, [])
+
+  /* Lock background scroll when drawer is open */
+  useEffect(() => {
+    if (isDrawerOpen) {
+      window.__lenis?.stop()
+      document.body.classList.add('overflow-hidden')
+    } else {
+      window.__lenis?.start()
+      document.body.classList.remove('overflow-hidden')
+    }
+    return () => {
+      window.__lenis?.start()
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isDrawerOpen])
 
   /* Reset scroll position on route change */
   useEffect(() => {
@@ -83,7 +106,7 @@ export default function Layout() {
       </motion.main>
 
       {/* ── Persistent Floating AI Agent Chatbot in bottom-right corner ── */}
-      <FloatingChatbot />
+      <FloatingChatbot isDrawerOpen={isDrawerOpen} />
 
       <Toaster
         position="top-right"

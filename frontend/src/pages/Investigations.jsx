@@ -17,7 +17,8 @@ import {
   Activity,
   FileCheck,
   Zap,
-  Info
+  Info,
+  Sparkles
 } from 'lucide-react'
 import { gstApi } from '@/lib/api'
 import { formatCurrency, formatDate, statusBadge, cn } from '@/lib/utils'
@@ -283,16 +284,36 @@ export default function Investigations() {
                     </div>
                   </div>
 
-                  <button
-                    onClick={closeDrawer}
-                    className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
-                  >
-                    <X size={18} />
-                  </button>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        window.dispatchEvent(
+                          new CustomEvent('open-gst-copilot', {
+                            detail: {
+                              prompt: `Investigate root cause ${selectedCandidate?.root_cause_id || routeInvId} (${selectedCandidate?.title || ''}). What are the systemic anomalies, affected invoice blast radius, and SAP master data fixes?`
+                            }
+                          })
+                        )
+                      }}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-colors shadow-2xs cursor-pointer"
+                      title="Analyze this investigation with AI Copilot"
+                    >
+                      <Sparkles size={12} className="text-amber-500" />
+                      <span>Ask Copilot</span>
+                    </button>
+
+                    <button
+                      onClick={closeDrawer}
+                      className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                    >
+                      <X size={18} />
+                    </button>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div data-lenis-prevent className="flex-1 overflow-y-auto px-6 py-5 space-y-6">
+                <div data-lenis-prevent className="flex-1 overflow-y-auto px-6 py-5 space-y-6 pb-16 scroll-thin">
                   {!selectedCandidate ? (
                     <EmptyState
                       icon={<AlertTriangle size={22} />}

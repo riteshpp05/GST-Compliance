@@ -20,7 +20,10 @@ import {
   Filter,
   DollarSign,
   AlertCircle,
-  FolderOpen
+  FolderOpen,
+  Bot,
+  Loader2,
+  Sparkles
 } from 'lucide-react'
 import { gstApi } from '@/lib/api'
 import { formatCurrency, formatDate, statusBadge, cn } from '@/lib/utils'
@@ -418,12 +421,32 @@ export default function Cases() {
                     </div>
                   </div>
 
-                  <button
-                    onClick={closeDrawer}
-                    className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
-                  >
-                    <X size={18} />
-                  </button>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        window.dispatchEvent(
+                          new CustomEvent('open-gst-copilot', {
+                            detail: {
+                              prompt: `Investigate case ${selectedCase?.case_id || routeCaseId} regarding ${selectedCase?.title || 'statutory exception'}. What are the failed gates, financial exposure, and SAP remediation steps?`
+                            }
+                          })
+                        )
+                      }}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-colors shadow-2xs cursor-pointer"
+                      title="Analyze this case with AI Copilot"
+                    >
+                      <Sparkles size={12} className="text-amber-500" />
+                      <span>Ask Copilot</span>
+                    </button>
+
+                    <button
+                      onClick={closeDrawer}
+                      className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                    >
+                      <X size={18} />
+                    </button>
+                  </div>
                 </div>
 
                 {/* Notification Toasts */}
@@ -441,7 +464,7 @@ export default function Cases() {
                 )}
 
                 {/* Drawer Scrollable Content */}
-                <div data-lenis-prevent className="flex-1 overflow-y-auto px-6 py-5 space-y-6">
+                <div data-lenis-prevent className="flex-1 overflow-y-auto px-6 py-5 space-y-6 pb-28 scroll-thin">
                   {isDetailLoading && !selectedCase ? (
                     <div className="space-y-4">
                       <Skeleton className="h-20 w-full" />
@@ -717,6 +740,71 @@ export default function Cases() {
                     </>
                   )}
                 </div>
+
+                {/* ── Sticky Action Footer Bar (Always visible & accessible) ── */}
+                {selectedCase && (
+                  <div className="px-6 py-3.5 bg-white/95 backdrop-blur-md border-t border-gray-200 sticky bottom-0 z-20 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap">
+                    <div className="flex-1 min-w-[200px]">
+                      <input
+                        type="text"
+                        placeholder="Auditor rationale / GSTR note (optional)…"
+                        value={reviewComment}
+                        onChange={(e) => setReviewComment(e.target.value)}
+                        className="input py-1.5 px-3 text-[12px] bg-gray-50 focus:bg-white"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <button
+                        onClick={() =>
+                          reviewMutation.mutate({
+                            caseId: selectedCase.case_id,
+                            decision: 'APPROVE',
+                            comment: reviewComment,
+                          })
+                        }
+                        disabled={reviewMutation.isPending}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 transition-colors shadow-xs cursor-pointer"
+                      >
+                        {reviewMutation.isPending ? <Loader2 size={13} className="animate-spin" /> : <CheckCircle2 size={13} />}
+                        Approve
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          reviewMutation.mutate({
+                            caseId: selectedCase.case_id,
+                            decision: 'REJECT',
+                            comment: reviewComment,
+                          })
+                        }
+                        disabled={reviewMutation.isPending}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-bold text-white bg-red-600 hover:bg-red-700 disabled:opacity-50 transition-colors shadow-xs cursor-pointer"
+                      >
+                        {reviewMutation.isPending ? <Loader2 size={13} className="animate-spin" /> : <X size={13} />}
+                        Reject
+                      </button>
+
+                      <button
+                        onClick={() => resolveMutation.mutate(selectedCase.case_id)}
+                        disabled={resolveMutation.isPending}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold text-blue-700 bg-blue-50 border border-blue-200 hover:bg-blue-100 disabled:opacity-50 transition-colors cursor-pointer"
+                      >
+                        {resolveMutation.isPending ? <Loader2 size={13} className="animate-spin" /> : null}
+                        Resolve
+                      </button>
+
+                      <button
+                        onClick={() => closeMutation.mutate(selectedCase.case_id)}
+                        disabled={closeMutation.isPending}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[12px] font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 transition-colors cursor-pointer"
+                      >
+                        {closeMutation.isPending ? <Loader2 size={13} className="animate-spin" /> : null}
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             </div>
           </div>
